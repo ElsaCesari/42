@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/11/30 15:00:01 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/11/30 18:17:12 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,54 @@ int	read_file(int fd)
 
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';//to be checked if necessary to put a final '\0'
-	ft_putstr(buf);
-	//	check_file(buf);//to be checkef if this way is correct
+	check_file(buf);
 	return (0);
 }
 
-/*int	check_file(char *str)
+int	check_file(char *str)
 {
+	int x;
+	int	
 
+	x = 0 ;
+	while (str[x])
+	{
+		if (str[x] != '.' || str[x] != '#' || str[x] != '\n')
+			exit (-1);
+		if ()
+		x++;
+	}
 }
-*/
+
+
+int	check_file_draft(char *str)
+{
+	int x;
+
+	x = 0;
+	while (file)
+	{
+		if (!(only: #, \n, .))
+			exit;
+		if (4l && 5th c == \n)
+		{
+			if (4c + \n)
+				incrememnt line
+			if (l = only $) or  (line_count %5 !=0 only \n) 
+				increment block counter;
+				increment line;
+			if (end block? == 5$ && no more characters)
+				increment block; 
+		}
+		exit;
+		if(!(6-8 connected #)
+			// use recursion?
+			exit;
+		return(ready)
+	}
+}
+
+void	cutcut(char *str)
+{
+	Here we cut the file into tetrimonos;
+}

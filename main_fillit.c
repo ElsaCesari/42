@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:45:21 by ecesari           #+#    #+#             */
-/*   Updated: 2017/11/30 15:14:41 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/11/30 15:47:53 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("usage: fillit Path/file");
+		ft_putstr("usage: ./fillit Path/file");
 		exit (-1);
 	}
 	else
