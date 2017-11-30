@@ -6,7 +6,7 @@
 #    By: ecesari <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 17:52:48 by ecesari           #+#    #+#              #
-#    Updated: 2017/11/30 11:54:01 by ecesari          ###   ########.fr        #
+#    Updated: 2017/11/30 15:08:54 by ecesari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SOURCES =	main_fillit.c\
 		
 OBJECTS = $(SOURCES:.c=.o)
 
+HEADER = fillit.h
+
 LIB = libft.a
 
 .PHONY : all clean fclean re
@@ -29,10 +31,10 @@ LIB = libft.a
 all: $(NAME)
 
 $(LIB):
-	@make re -C ./Libft/	
+	@make re -C Libft/	
 
 $(NAME): $(LIB)
-	$(CC) $(CFLAGS) $(SOURCES)-o $(NAME)
+	$(CC) $(CFLAGS) $(SOURCES) -L Libft -lft -I $(HEADER) -o $(NAME)
 
 clean:
 	rm -f $(OBJECTS)
