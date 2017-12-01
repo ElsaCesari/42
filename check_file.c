@@ -6,14 +6,12 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/11/30 18:17:12 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/01 16:51:54 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#define BUF_SIZE	546 //546 = 21 characters * 26 tetriminos max
-
-//the function that will check that the shapes are valid
+#define BUF_SIZE	555 //546 = 21 characters * 26 tetriminos max
 
 int	read_file(int fd)
 {
@@ -22,54 +20,66 @@ int	read_file(int fd)
 
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';//to be checked if necessary to put a final '\0'
-	check_file(buf);
+	check_shape(buf);
 	return (0);
 }
 
-int	check_file(char *str)
+int	count_char(char *str, char c)
 {
 	int x;
-	int	
+	int count_char;
+
+	x = 0 ;
+	count_char = 0;
+	while (str[x])
+	{
+		if (str[x] == c)
+			count_char++;
+		x++;
+	}
+	return (count_char);
+}
+
+int	check_char(char *str)
+{
+	int x;
 
 	x = 0 ;
 	while (str[x])
 	{
-		if (str[x] != '.' || str[x] != '#' || str[x] != '\n')
-			exit (-1);
-		if ()
+		if ((str[x] != '.' && str[x] != '#' && str[x] != '\n') ||
+			(count_char(str, '.') % 12 != 0 && count_char(str, '#') % 4 != 0
+			 && (count_char(str, '\n') + 1) % 5 != 0))
+			return (0);
 		x++;
 	}
+	return (1);
 }
 
-
-int	check_file_draft(char *str)
+int	check_shape(char *str)
 {
 	int x;
+	int connect;
 
 	x = 0;
-	while (file)
-	{
-		if (!(only: #, \n, .))
-			exit;
-		if (4l && 5th c == \n)
+	connect = 0;		
+	if (check_char(str) == 1)
+	{	
+		while (str[x])
 		{
-			if (4c + \n)
-				incrememnt line
-			if (l = only $) or  (line_count %5 !=0 only \n) 
-				increment block counter;
-				increment line;
-			if (end block? == 5$ && no more characters)
-				increment block; 
+			if (str[x] == '#' && str[x + 1] == '#' )	
+				connect++;
+			if (str[x] == '#' && str[x - 1] == '#' )	
+				connect++;
+			if (str[x] == '#' && str[x + 5] == '#' )	
+				connect++;
+			if (str[x] == '#' && str[x - 5] == '#' )	
+				connect++;
+			x++;
 		}
-		exit;
-		if(!(6-8 connected #)
-			// use recursion?
-			exit;
-		return(ready)
+		printf("%d", connect);
+		if (connect == 6 || connect == 8)
+			return (1);
 	}
-}
-
-void	cutcut(char *str)
-{
-	Here we cut the file into tetrimonos;
+	return (0);
 }
