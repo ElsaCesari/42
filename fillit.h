@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:59:33 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/01 16:51:21 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/04 19:39:44 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-#include <stdio.h>
+# include <stdio.h> // to be erased !!!
 
-typedef	struct	s_link_chained_list
+typedef struct 	s_coordinates
 {
-	char						*str;
-	struct s_link_chained_list	*next;
-}				t_tetriminos;
+	int		x[4];
+	int 	y[4];
+	char 	c;
+}				t_tetri;
 
 int				read_file(int fd);
-int				count_char(char *str, char c);
-int				check_char(char *str);
-int				check_shape(char *str);
+int				check_char(char *str, int dot, int hash, int line);
+int				check_shape(char *str, int line);
+void			ft_push_back(t_list **begin_list, t_list *list);
+void			snippy(char *str, t_list **lst);
 
 #endif

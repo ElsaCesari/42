@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/01 16:51:54 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/04 20:06:20 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,69 +17,96 @@ int	read_file(int fd)
 {
 	int		ret;
 	char	buf[BUF_SIZE];
+	int dot;
+	int hash;
+	int line;
 
+	dot = 0;
+	hash = 0;
+	line = 0;
 	ret = read(fd, buf, BUF_SIZE + 1);
-	buf[ret] = '\0';//to be checked if necessary to put a final '\0'
-	check_shape(buf);
+	buf[ret] = '\0';
+	printf("ia");
+	if (check_char(buf, dot, hash, line) == 0 || check_shape(buf, line) == 0)
+		return (0);
 	return (0);
 }
 
-int	count_char(char *str, char c)
+int	check_char(char *str, int dot, int hash, int line)
 {
 	int x;
-	int count_char;
+	int	tetri;
 
 	x = 0 ;
-	count_char = 0;
+	tetri = 0;
 	while (str[x])
 	{
-		if (str[x] == c)
-			count_char++;
-		x++;
-	}
-	return (count_char);
-}
-
-int	check_char(char *str)
-{
-	int x;
-
-	x = 0 ;
-	while (str[x])
-	{
-		if ((str[x] != '.' && str[x] != '#' && str[x] != '\n') ||
-			(count_char(str, '.') % 12 != 0 && count_char(str, '#') % 4 != 0
-			 && (count_char(str, '\n') + 1) % 5 != 0))
+		dot = 0;
+		hash = 0;
+		line = 0;
+		while (line < 5 && str[x])	
+		{
+			if (str[x] != '.' && str[x] != '#' && str[x] != '\n') 
+				return (0);
+			dot = (str[x] == '.') ? ++dot : dot;
+			hash = (str[x] == '#') ? ++hash : hash;
+			line = (str[x] == '\n') ? ++line : line;
+			if (str[x] == '\n' && line != 5)
+				if ((4 * line) != (dot + hash))
+					return (0);
+			x++;
+		}
+		tetri++;
+		if (!(dot == 12 && hash == 4))
 			return (0);
-		x++;
 	}
-	return (1);
+	return (tetri);
 }
 
-int	check_shape(char *str)
+void	a_supprimer(t_list *lst)
+{
+	t_tetri	*bloum;
+
+	while (lst->next)
+	{
+		bloum = (t_tetri*)lst->content;
+		printf("%d", bloum->x[0]);
+		lst = lst->next;
+	}
+		bloum = (t_tetri*)lst->content;
+		printf("%d", bloum->x[0]);
+}
+
+int	check_shape(char *str, int line)
 {
 	int x;
 	int connect;
-
+	t_list	*lst;
+	
 	x = 0;
-	connect = 0;		
-	if (check_char(str) == 1)
-	{	
-		while (str[x])
+	lst = NULL;
+	printf("o");
+	while (str[x])
+	{
+		connect = 0;
+		line = 0;
+		while (line < 5 && str[x])
 		{
-			if (str[x] == '#' && str[x + 1] == '#' )	
-				connect++;
-			if (str[x] == '#' && str[x - 1] == '#' )	
-				connect++;
-			if (str[x] == '#' && str[x + 5] == '#' )	
-				connect++;
-			if (str[x] == '#' && str[x - 5] == '#' )	
-				connect++;
+			if (str[x] == '#')
+			{	
+				connect = (str[x + 1] == '#') ? ++connect : connect;
+				connect = (str[x - 1] == '#') ? ++connect : connect;
+				connect = (str[x + 5] == '#' && line < 3) ? ++connect : connect;
+				connect = (str[x - 5] == '#' && line != 0) ? ++connect : connect;
+			}
+			line = (str[x] == '\n') ? ++line : line;
 			x++;
 		}
-		printf("%d", connect);
-		if (connect == 6 || connect == 8)
-			return (1);
+		if (connect != 6 && connect != 8)
+			return (0);
 	}
-	return (0);
+	snippy(str, &lst);
+	printf("o");
+	a_supprimer(lst);
+	return (1);
 }
