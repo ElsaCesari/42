@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/04 20:06:20 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/05 18:49:00 by aschukin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	check_shape(char *str, int line)
 			return (0);
 	}
 	snippy(str, &lst);
+	move_it(str, link);
 	printf("o");
 	a_supprimer(lst);
 	return (1);
