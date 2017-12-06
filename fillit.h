@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:59:33 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/05 18:41:54 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/06 16:09:53 by aschukin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				read_file(int fd);
 int				check_char(char *str, int dot, int hash, int line);
 int				check_shape(char *str, int line);
 void			ft_push_back(t_list **begin_list, t_list *list);
-void			snippy(char *str, t_list **lst);
-void			move_it(char *str, t_tetri link);
+t_tetri			*snippy(char *str, t_list **lst);
+void			move_it(char *str, t_tetri *link);
 
 #endif
