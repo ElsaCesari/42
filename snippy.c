@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:34:06 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 15:47:55 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/06 19:24:47 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_tetri	*snippy(char *str, t_list **lst)
 	x = 0;
 	hash = 0;
 	letter = 0;
-	if (!(link = (t_tetri*)malloc(sizeof(t_tetri))))
+	if (!(link = (t_tetri*)ft_memalloc(sizeof(t_tetri))))
 		return (0);
 	while (str[x])
 	{
@@ -35,7 +35,7 @@ t_tetri	*snippy(char *str, t_list **lst)
 		if (hash == 4)
 		{
 			link->c = letter + 65;
-			ft_push_back(lst, ft_lstnew(&link, sizeof(link)));
+			ft_push_back(lst, ft_lstnew(link, sizeof(link)));
 			hash = 0;
 			letter++;
 		}

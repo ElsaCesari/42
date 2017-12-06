@@ -6,61 +6,65 @@
 /*   By: aschukin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:43:56 by aschukin          #+#    #+#             */
-/*   Updated: 2017/12/06 16:09:34 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/06 19:25:33 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	move_up(char *str, t_tetri *link)
+static void	move_up(t_tetri *link)
 {
 	int i;
-	int hash;
+	int min_y;
 
 	i = 0;
-	hash = 0;
-	while (str[i])
+	min_y = link->y[0]; //pourquoi pas mettre link->y[i]
+	printf("ok move_up \n");
+	while (i < 4)
 	{
-		while (link->y[hash] != 0 && hash < 4)
-			hash++;
-		if (hash == 4)
+		if (min_y > link->y[i])
 		{
-			hash = 0;
-			while (hash < 4)
-			{
-				link->y[hash] = link->y[hash] - 1;
-				hash++;
-			}
+			printf("ok a \n");
+			min_y = link->y[i];
 		}
+		i++;
+	}
+	printf("ok move_up \n");
+	i = 0;
+	while (i < 4)
+	{
+		printf("ok b \n");
+		link->y[i] -= min_y;
+		i++;
+	}
+	printf("ok move_up \n");
+}
+
+static void	move_left(t_tetri *link)
+{
+	int i;
+	int min_x;
+
+	i = 0;
+	min_x = link->x[0]; //pourquoi pas mettre link->x[i]
+	while (i < 4)
+	{
+		if (min_x > link->x[i])
+		{
+			min_x = link->x[i];
+		}
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		link->x[i] -= min_x;
+		i++;
 	}
 }
 
-
-static void	move_left(char *str, t_tetri *link)
+void		move_it(t_tetri *link)
 {
-	int i;
-	int hash;
-
-	i = 0;
-	hash = 0;
-	while (str[i])
-	{
-		while (link->x[hash] != 0 && hash < 4)
-			hash ++;
-		if (hash == 4)
-		{
-			hash = 0;
-			while (hash < 4)
-			{
-				link->x[hash] = link->x[hash] - 1;
-				hash++;
-			}
-		}
-	}
-}
-
-void		move_it(char *str, t_tetri *link)
-{
-	move_up(str, link);
-	move_left(str, link);
+	move_up(link);
+	move_left(link);
 }

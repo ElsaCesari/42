@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 16:09:50 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/06 19:17:45 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ void	a_supprimer(t_list *lst)
 {
 	t_tetri	*bloum;
 
-	while (lst->next)
+	while (lst)
 	{
 		bloum = (t_tetri*)lst->content;
-		printf("%d", bloum->x[0]);
+		printf("%d \n", bloum->x[0]);
 		lst = lst->next;
 	}
-		bloum = (t_tetri*)lst->content;
-		printf("%d", bloum->x[0]);
 }
 
 int	check_shape(char *str, int line)
@@ -107,8 +105,9 @@ int	check_shape(char *str, int line)
 			return (0);
 	}
 	link = snippy(str, &lst);
-	move_it(str, link);
-	printf("o");
+	a_supprimer(lst);
+	move_it(link);
+	printf("\n");
 	a_supprimer(lst);
 	return (1);
 }

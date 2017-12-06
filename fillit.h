@@ -31,6 +31,6 @@ int				check_char(char *str, int dot, int hash, int line);
 int				check_shape(char *str, int line);
 void			ft_push_back(t_list **begin_list, t_list *list);
 t_tetri			*snippy(char *str, t_list **lst);
-void			move_it(char *str, t_tetri *link);
+void			move_it(t_tetri *link);
 
 #endif
