@@ -6,7 +6,7 @@
 #    By: ecesari <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 17:52:48 by ecesari           #+#    #+#              #
-#    Updated: 2017/12/04 19:46:30 by ecesari          ###   ########.fr        #
+#    Updated: 2017/12/05 18:42:40 by aschukin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SOURCES =	main_fillit.c\
 			check_file.c\
 			solve_fillit.c\
 			snippy.c\
-			ft_push_back.c
+			ft_push_back.c \
+			move_it.c
 		
 OBJECTS = $(SOURCES:.c=.o)
 
