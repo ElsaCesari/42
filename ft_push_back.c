@@ -6,19 +6,20 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 18:59:46 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/04 19:47:54 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/05 08:54:15 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
 // cherche a mettre a la fin de begin list l'element *list
- 
+
 void	ft_push_back(t_list **begin_list, t_list *list)
 {
 	t_list *tmp;
 
 	if (!(*begin_list))
-		*begin_list = list;	
+		*begin_list = list;
 	else
 	{
 		tmp = *begin_list;
