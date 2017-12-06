@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/05 18:49:00 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/06 15:43:05 by aschukin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	check_shape(char *str, int line)
 	int x;
 	int connect;
 	t_list	*lst;
+	t_tetri *link;
 	
 	x = 0;
 	lst = NULL;
@@ -105,7 +106,7 @@ int	check_shape(char *str, int line)
 		if (connect != 6 && connect != 8)
 			return (0);
 	}
-	snippy(str, &lst);
+	link = snippy(str, &lst);
 	move_it(str, link);
 	printf("o");
 	a_supprimer(lst);
