@@ -6,47 +6,77 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:52:04 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/05 19:21:24 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/06 14:51:30 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**map(int n)
+void	ft_putchar(char c)
+{
+		write(1, &c, 1);
+}
+
+char	*create_line(int n)
+{
+	char	*line;
+	int		x;
+
+	x = 0;
+	if (!(line = (char*)malloc(sizeof(char) * (n + 1))))
+		return (NULL);
+	while (x < n)
+	{
+		line[x] = '.';
+		x++;
+	}
+	line[x] = '\0';
+	return (line);
+}
+
+char	**create_map(int n)
 {
 	char	**map;
-	int 	x;
-	int 	y;
+	int		y;
 
-	x = n + n;
-	y = n;
-	if (!(map[x] = (char *)malloc(sizeof(char) * x)))
-		return (NULL);
-	if (!(map[x][y] = (char *)malloc(sizeof(char) * y)))
-		return (NULL);
-	x = 0;
+	map = NULL;
 	y = 0;
-	while (x < 2n)
+	if (!(map = (char**)malloc(sizeof(char*) * (n + 1))))
+		return (NULL);
+	while (y < n)
 	{
-		while (y < n)
-		{
-			map[x][y] = '.';
-			y++;
-		}
-		while (x % (x + 1) == 0)
-		{
-			map[x] = '\0';
-			x++;
-		}
+		map[y] = create_line(n);
+		y++;
 	}
+	map[y] = NULL;
 	return (map);
+}
+
+void	ft_print_map(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			ft_putchar(map[i][j]);
+			j++;
+		}
+		j = 0;
+		ft_putchar('\n');
+		i++;
+	}
 }
 
 int	main(void)
 {
 	int n;
 
-	n = 2;
-	printf("%c", *map(n));
+	n = 16;
+	ft_print_map(create_map(n));	
 	return (0);
 }
