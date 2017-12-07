@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:45:21 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 17:55:25 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 09:37:36 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ int	main(int argc, char **argv)
 			ft_putstr("error\n");
 			exit(-1);
 		}
-		read_file(fd);
+		if (read_file(fd) == -1)
+		{
+			ft_putstr("error\n");
+			exit(-1);
+		}
 		if (close(fd) == -1)
 		{
 			ft_putstr("error\n");
 			exit(-1);
 		}
 	}
-	/*function to solve the file
-	  function to return the solution found*/
 	return (0);
 }

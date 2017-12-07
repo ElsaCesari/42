@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 19:17:45 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 09:57:20 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ int	read_file(int fd)
 	line = 0;
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';
-	printf("ia");
 	if (check_char(buf, dot, hash, line) == 0 || check_shape(buf, line) == 0)
-		return (0);
+		return (-1);
 	return (0);
 }
 
@@ -63,7 +62,7 @@ int	check_char(char *str, int dot, int hash, int line)
 	return (tetri);
 }
 
-void	a_supprimer(t_list *lst)
+void	only_displaying(t_list *lst) //to be erased
 {
 	t_tetri	*bloum;
 
@@ -78,25 +77,23 @@ void	a_supprimer(t_list *lst)
 int	check_shape(char *str, int line)
 {
 	int x;
-	int connect;
-	t_list	*lst;
+	int cont;
 	t_tetri *link;
 	
 	x = 0;
-	lst = NULL;
-	printf("o");
+	link = NULL;
 	while (str[x])
 	{
-		connect = 0;
+		cont = 0;
 		line = 0;
 		while (line < 5 && str[x])
 		{
 			if (str[x] == '#')
 			{	
-				connect = (str[x + 1] == '#') ? ++connect : connect;
-				connect = (str[x - 1] == '#') ? ++connect : connect;
-				connect = (str[x + 5] == '#' && line < 3) ? ++connect : connect;
-				connect = (str[x - 5] == '#' && line != 0) ? ++connect : connect;
+				cont = (str[x + 1] == '#') ? ++cont : connect;
+				cont = (str[x - 1] == '#') ? ++cont : cont;
+				cont = (str[x + 5] == '#' && line < 3) ? ++cont : cont;
+				cont = (str[x - 5] == '#' && line != 0) ? ++cont : cont;
 			}
 			line = (str[x] == '\n') ? ++line : line;
 			x++;
@@ -105,9 +102,7 @@ int	check_shape(char *str, int line)
 			return (0);
 	}
 	link = snippy(str, &lst);
-	a_supprimer(lst);
+	only_display(lst);
 	move_it(link);
-	printf("\n");
-	a_supprimer(lst);
 	return (1);
 }

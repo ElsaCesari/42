@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:59:33 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 16:09:53 by aschukin         ###   ########.fr       */
+/*   Updated: 2017/12/07 09:57:28 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 
 typedef struct 	s_coordinates
 {
-	int		x[4];
-	int 	y[4];
-	char 	c;
+	int				x[4];
+	int 			y[4];
+	char 			c;
+	s_coordinates	*next;
 }				t_tetri;
 
 int				read_file(int fd);
