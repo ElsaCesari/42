@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 09:57:20 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 12:10:49 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,12 @@ int	check_char(char *str, int dot, int hash, int line)
 	return (tetri);
 }
 
-void	only_displaying(t_list *lst) //to be erased
-{
-	t_tetri	*bloum;
-
-	while (lst)
-	{
-		bloum = (t_tetri*)lst->content;
-		printf("%d \n", bloum->x[0]);
-		lst = lst->next;
-	}
-}
-
 int	check_shape(char *str, int line)
 {
 	int x;
 	int cont;
-	t_tetri *link;
 	
 	x = 0;
-	link = NULL;
 	while (str[x])
 	{
 		cont = 0;
@@ -90,7 +76,7 @@ int	check_shape(char *str, int line)
 		{
 			if (str[x] == '#')
 			{	
-				cont = (str[x + 1] == '#') ? ++cont : connect;
+				cont = (str[x + 1] == '#') ? ++cont : cont;
 				cont = (str[x - 1] == '#') ? ++cont : cont;
 				cont = (str[x + 5] == '#' && line < 3) ? ++cont : cont;
 				cont = (str[x - 5] == '#' && line != 0) ? ++cont : cont;
@@ -98,11 +84,9 @@ int	check_shape(char *str, int line)
 			line = (str[x] == '\n') ? ++line : line;
 			x++;
 		}
-		if (connect != 6 && connect != 8)
+		if (cont != 6 && cont != 8)
 			return (0);
 	}
-	link = snippy(str, &lst);
-	only_display(lst);
-	move_it(link);
+	snippy_rest(str);
 	return (1);
 }

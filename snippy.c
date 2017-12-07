@@ -6,40 +6,95 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:34:06 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 09:57:24 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 12:47:06 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_tetri	*snippy(char *str, t_list **lst)
+t_tetri	*snippy_first_tetri(char *str)
 {
-	int		x;
+	int		x[4];
+	int 	y[4];
 	int		hash;
-	t_tetri	*link;
-	int		letter;
+	t_tetri	*begin_list;
+	int 	i;
+	char 	letter;
 
-	x = 0;
 	hash = 0;
-	letter = 0;
-	if (!(link = (t_tetri*)ft_memalloc(sizeof(t_tetri))))
-		return (0);
-	while (str[x])
+	begin_list = NULL;
+	i = 0;
+	while (i < 21)
 	{
-		if (hash < 4 && str[x] == '#')
+		if (hash < 4 && str[i] == '#')
 		{
-			link->x[hash] = (x - letter) % 5;
-			link->y[hash] = (x - letter * 21) / 5;
+			x[hash] = i % 5;
+			y[hash] = i / 5;
 			hash++;
 		}
 		if (hash == 4)
 		{
-			link->c = letter + 65;
-			ft_push_back(lst, ft_lstnew(link, sizeof(link)));
+			letter  = 'A';
+			begin_list = ft_listnew(x, y, letter);
+			hash = 0;
+		}
+		i++;
+	}
+	return (begin_list);
+}
+
+t_tetri	*snippy_rest(char *str)
+{
+	int		x[4];
+	int 	y[4];
+	int		hash;
+	t_tetri	*link;
+	t_tetri	*begin_list;
+	char	letter;
+	int		i;
+
+	hash = 0;
+	letter = 'B';
+	i = 0;
+	begin_list = snippy_first_tetri(str);
+	link = begin_list;
+	str = str + 21;
+	while (str[i])
+	{
+		if (hash < 4 && str[i] == '#')
+		{
+			x[hash] = i % 5;
+			y[hash] = i / 5;
+			hash++;
+		}
+		if (hash == 4)
+		{
+			link->next = ft_listnew(x, y, letter);
 			hash = 0;
 			letter++;
+			link = link->next;
 		}
-		x++;
+		i++;
+		if (i == 20)
+		{
+			str = str + i + 1;
+			i = 0;
+		}
 	}
-	return (link);
+	ft_display_the_result(begin_list);
+	return (begin_list);
+}
+
+void	ft_display_the_result(t_tetri *list)
+{
+	t_tetri	*tmp;
+
+	tmp = list;
+	only_displaying(list);
+	while (tmp)
+	{
+		move_it(tmp);
+		tmp = tmp->next;
+	}
+	only_displaying(list);
 }
