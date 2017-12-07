@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 12:10:49 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 16:42:51 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,23 @@ int	read_file(int fd)
 {
 	int		ret;
 	char	buf[BUF_SIZE];
-	int dot;
-	int hash;
-	int line;
+	int		dot;
+	int		hash;
+	int		line;
 
 	dot = 0;
 	hash = 0;
 	line = 0;
+	if (fd == -1)
+	{
+		ft_putstr("error\n");
+		exit(-1);
+	}
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';
 	if (check_char(buf, dot, hash, line) == 0 || check_shape(buf, line) == 0)
 		return (-1);
+	ft_print_map(create_map(smallest_square(check_char(buf, dot, hash, line))));
 	return (0);
 }
 
@@ -36,16 +42,16 @@ int	check_char(char *str, int dot, int hash, int line)
 	int x;
 	int	tetri;
 
-	x = 0 ;
+	x = 0;
 	tetri = 0;
 	while (str[x])
 	{
 		dot = 0;
 		hash = 0;
 		line = 0;
-		while (line < 5 && str[x])	
+		while (line < 5 && str[x])
 		{
-			if (str[x] != '.' && str[x] != '#' && str[x] != '\n') 
+			if (str[x] != '.' && str[x] != '#' && str[x] != '\n')
 				return (0);
 			dot = (str[x] == '.') ? ++dot : dot;
 			hash = (str[x] == '#') ? ++hash : hash;
@@ -66,7 +72,7 @@ int	check_shape(char *str, int line)
 {
 	int x;
 	int cont;
-	
+
 	x = 0;
 	while (str[x])
 	{
@@ -75,7 +81,7 @@ int	check_shape(char *str, int line)
 		while (line < 5 && str[x])
 		{
 			if (str[x] == '#')
-			{	
+			{
 				cont = (str[x + 1] == '#') ? ++cont : cont;
 				cont = (str[x - 1] == '#') ? ++cont : cont;
 				cont = (str[x + 5] == '#' && line < 3) ? ++cont : cont;
@@ -89,4 +95,14 @@ int	check_shape(char *str, int line)
 	}
 	snippy_rest(str);
 	return (1);
+}
+
+int smallest_square(int tetri)
+{
+	int n;
+
+	n = 2;
+	while (n * n < tetri * 4)
+		n++;
+	return (n);
 }

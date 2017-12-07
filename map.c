@@ -6,16 +6,11 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:52:04 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/06 17:34:15 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 16:21:20 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	ft_putchar(char c)
-{
-		write(1, &c, 1);
-}
 
 char	*create_line(int n)
 {
@@ -70,13 +65,4 @@ void	ft_print_map(char **map)
 		ft_putchar('\n');
 		i++;
 	}
-}
-
-int	main(void)
-{
-	int n;
-
-	n = 16;
-	ft_print_map(create_map(n));	
-	return (0);
 }

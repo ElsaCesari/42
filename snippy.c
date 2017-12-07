@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:34:06 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 12:47:06 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 14:40:09 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_tetri	*snippy_first_tetri(char *str)
 	int		x[4];
 	int 	y[4];
 	int		hash;
-	t_tetri	*begin_list;
 	int 	i;
 	char 	letter;
+	t_tetri	*begin_list;
 
 	hash = 0;
-	begin_list = NULL;
 	i = 0;
+	begin_list = NULL;
 	while (i < 21)
 	{
 		if (hash < 4 && str[i] == '#')
@@ -48,14 +48,14 @@ t_tetri	*snippy_rest(char *str)
 	int		x[4];
 	int 	y[4];
 	int		hash;
+	int		i;
+	char	letter;
 	t_tetri	*link;
 	t_tetri	*begin_list;
-	char	letter;
-	int		i;
 
 	hash = 0;
-	letter = 'B';
 	i = 0;
+	letter = 'B';
 	begin_list = snippy_first_tetri(str);
 	link = begin_list;
 	str = str + 21;

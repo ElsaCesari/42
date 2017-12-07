@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_fillit.c                                      :+:      :+:    :+:   */
+/*   place.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 14:45:21 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 15:48:00 by ecesari          ###   ########.fr       */
+/*   Created: 2017/12/07 16:51:43 by ecesari           #+#    #+#             */
+/*   Updated: 2017/12/07 16:56:40 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-int	main(int argc, char **argv)
+char	**try_placing(char **map, t_tetri *link)
 {
-	int		fd;
+	int x;
+	int y;
+	int	hash;
 
-	if (argc != 2)
-	{
-		ft_putstr("usage: ./fillit Path/file");
-		exit(-1);
-	}
-	else
-	{
-		if ((fd = open(argv[1], O_RDONLY)) == -1)
-		{
-			ft_putstr("error\n");
-			exit(-1);
-		}
-		read_file(fd);
-		if (close(fd) == -1)
-		{
-			ft_putstr("error\n");
-			exit(-1);
-		}
-	}
-	return (0);
+	x = 0;
+	y = 0;
+	hash = 0;
+	if (map[x][y] == '.' && map[link->x[hash ] == )
 }
