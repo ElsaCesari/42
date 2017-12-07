@@ -6,7 +6,7 @@
 /*   By: aschukin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:43:56 by aschukin          #+#    #+#             */
-/*   Updated: 2017/12/07 14:45:21 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 18:49:11 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ static void	move_left(t_tetri *link)
 	}
 }
 
-void		move_it(t_tetri *link)
+t_tetri	*move_it(t_tetri *link)
 {
 	move_up(link);
 	move_left(link);
+	return (link);
 }

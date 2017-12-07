@@ -6,7 +6,7 @@
 /*   By: ecesari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:54:29 by ecesari           #+#    #+#             */
-/*   Updated: 2017/12/07 16:42:51 by ecesari          ###   ########.fr       */
+/*   Updated: 2017/12/07 19:45:45 by ecesari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	read_file(int fd)
 	if (check_char(buf, dot, hash, line) == 0 || check_shape(buf, line) == 0)
 		return (-1);
 	ft_print_map(create_map(smallest_square(check_char(buf, dot, hash, line))));
+	snippy_rest(buf);
+	try_placing(create_map(smallest_square(check_char(buf, dot, hash, line))),snippy_rest(buf));
 	return (0);
 }
 
@@ -93,7 +95,6 @@ int	check_shape(char *str, int line)
 		if (cont != 6 && cont != 8)
 			return (0);
 	}
-	snippy_rest(str);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: ecesari <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 17:52:48 by ecesari           #+#    #+#              #
-#    Updated: 2017/12/07 16:41:53 by ecesari          ###   ########.fr        #
+#    Updated: 2017/12/07 18:43:54 by ecesari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SOURCES =	main_fillit.c\
 			snippy.c\
 			list_tetri.c\
 			move_it.c\
-			map.c
+			map.c\
+			place.c
 		
 OBJECTS = $(SOURCES:.c=.o)
 
