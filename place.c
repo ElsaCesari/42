@@ -46,7 +46,7 @@ char	**placing(int i, int j, char **map, t_tetri link)
 	hash = 0;
 	while (map[i])
 	{
-		while (hash <= 3)
+		while (hash < 3)
 		{
 			i = link.x[hash];
 			j = link.y[hash];
@@ -54,9 +54,33 @@ char	**placing(int i, int j, char **map, t_tetri link)
 			printf("a");
 			i++;
 			j++;
+			hash++;
 		}
-		hash++;
 	}
 	ft_print_map(map);
 	return (map);
+}
+
+
+/* replaces tetri letters with dots */
+
+char	**delete(char **map, t_tetri link)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	j = 0;
+	while (map[i] != NULL)
+	{
+		while(map[i][j] != '\0')
+		{
+			if (map[i][j] == link.c) // could use is_alpha here?
+				tab[i][j] = '.';
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (map)
 }
