@@ -39,7 +39,7 @@ $(LIB):
 	@make re -C Libft/	
 
 $(NAME): $(LIB)
-	$(CC) $(CFLAGS) $(SOURCES) -L Libft -lft -I $(HEADER) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SOURCES) -L Libft -lft -I $(HEADER) -o $(NAME)
 
 clean:
 	rm -f $(OBJECTS)

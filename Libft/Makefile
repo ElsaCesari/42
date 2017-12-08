@@ -84,15 +84,18 @@ OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
+%.o : %.c
+	@gcc -c -I $(CFLAGS) $<
+
 $(NAME): $(OBJECTS)
-	ar rc $(NAME) $(OBJECTS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
