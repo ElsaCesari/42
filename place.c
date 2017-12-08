@@ -16,36 +16,46 @@ int	try_placing(char **map, t_tetri *link)
 {
 	int i;
 	int j;
+	int lenght_map;
 
 	i = 0;
 	j = 0;
-	while (map)
+	lenght_map = ft_strlen(map[0]);
+	while (map[j])
 	{
-		if (map[i][j] == '.' && map[link->x[1]][link->y[1]] == '.'
-		 && map[link->x[2]][link->y[2]] == '.'
-		 && map[link->x[3]][link->y[3]] == '.')
-			placing(i, j, map, *link);
-			printf("b");
-			return (1);
-		i++;
+		while (map[j][i])
+		{
+			if (map[j][i] == '.' && map[j + link->y[1]][i + link->x[1]] == '.'
+		 		&& map[j + link->y[2]][i + link->x[2]] == '.'
+		 		&& map[j + link->y[3]][i +link->x[3]] == '.')
+			{
+				placing(i, j, map, *link);
+				return (1);
+			}
+			i++;
+		}
+		i = 0;
 		j++;
-		link = link->next;
+		//link = link->next;
 	}
+	ft_print_map(map);
 	return (0);
 }
 
 char	**placing(int i, int j, char **map, t_tetri link)
 {
-	/*map[i][j] = link.c;	
-	map[link.x[1]][link.y[1]] = link.c;
-	map[link.x[2]][link.y[2]] = link.c;
-	map[link.x[3]][link.y[3]] = link.c;
-*/
-	int hash;
-
-	hash = 0;
-	while (map[i])
+	t_tetri	*to_display;
+	int		k;
+	int		size_list;
+	int		z;
+	
+	k = 0;
+	z = 0;
+	size_list = ft_lstcount(&link);
+	to_display = &link;
+	while (to_display)
 	{
+<<<<<<< Updated upstream
 		while (hash < 3)
 		{
 			i = link.x[hash];
@@ -56,11 +66,26 @@ char	**placing(int i, int j, char **map, t_tetri link)
 			j++;
 			hash++;
 		}
+=======
+		while (k < 4 && z < size_list)
+		{
+			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
+			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
+			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
+			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
+			k++;
+		}
+		k = 0;
+		z++;
+		to_display = to_display->next;
+		try_placing(map, to_display);
+>>>>>>> Stashed changes
 	}
-	ft_print_map(map);
+	
 	return (map);
 }
 
+<<<<<<< Updated upstream
 
 /* replaces tetri letters with dots */
 
@@ -84,3 +109,20 @@ char	**delete(char **map, t_tetri link)
 	}
 	return (map)
 }
+=======
+/*char	**ft_fillit_solve(char **map, t_tetri *link)
+{
+	t_tetri	tmp;
+
+	tmp = link
+	if (tmp == NULL)
+		return (map);
+	while (link)
+	{
+			
+
+	}
+
+
+}*/
+>>>>>>> Stashed changes

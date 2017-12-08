@@ -42,16 +42,29 @@ void	only_displaying(t_tetri *list)//to be erased
 	to_display = list;
 	while (to_display)
 	{
-		printf("\n	Tetriminos n*%d", j);
-		printf(" (lettre : %c) \n", to_display->c);
+		printf("\n	Tetriminos n*%d (lettre : %c) \n", j, to_display->c);
 		while (i < 4)
 		{
-			printf("# n*%d est a x[%d] : %d et a y[%d] : %d \n", i,
-					i, to_display->x[i], i, to_display->y[i]);
+			printf("# n*%d est a x[%d] : %d et a y[%d] : %d \n", i, i, to_display->x[i], i, to_display->y[i]);
 			i++;
 		}
 		i = 0;
 		j++;
 		to_display = to_display->next;
 	}
+}
+
+int	ft_lstcount(t_tetri *list)
+{
+	int		i;
+	t_tetri	*temp;
+
+	i = 0;
+	temp = list;
+	while (temp != NULL)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
 }

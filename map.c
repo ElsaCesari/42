@@ -47,6 +47,8 @@ char	**create_map(int n)
 	return (map);
 }
 
+//void	delete_map()
+
 void	ft_print_map(char **map)
 {
 	int i;

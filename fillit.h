@@ -41,6 +41,7 @@ char			**create_map(int n);
 char			*create_line(int n);
 int				smallest_square(int tetri);
 int				try_placing(char **map, t_tetri *link);
-char			**placing(int x, int y, char **map, t_tetri link);
+char			**placing(int i, int j, char **map, t_tetri link);
+int				ft_lstcount(t_tetri *list);
 
 #endif
