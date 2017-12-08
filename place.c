@@ -14,35 +14,49 @@
 
 int	try_placing(char **map, t_tetri *link)
 {
-	int x;
-	int y;
-	int	hash;
+	int i;
+	int j;
 
-	x = 0;
-	y = 0;
-	hash = 0;
+	i = 0;
+	j = 0;
 	while (map)
 	{
-		if (map[x][y] == '.' && map[link->x[hash + 1]][link->y[hash + 1]] == '.'
-		 && map[link->x[hash + 2]][link->y[hash + 2]] == '.'
-		 && map[link->x[hash + 3]][link->y[hash + 3]] == '.')
-			placing(x, y, map, *link);
+		if (map[i][j] == '.' && map[link->x[1]][link->y[1]] == '.'
+		 && map[link->x[2]][link->y[2]] == '.'
+		 && map[link->x[3]][link->y[3]] == '.')
+			placing(i, j, map, *link);
+			printf("b");
 			return (1);
-		x++;
-		y++;
+		i++;
+		j++;
+		link = link->next;
 	}
 	return (0);
 }
 
-char	**placing(int x, int y, char **map, t_tetri link)
+char	**placing(int i, int j, char **map, t_tetri link)
 {
+	/*map[i][j] = link.c;	
+	map[link.x[1]][link.y[1]] = link.c;
+	map[link.x[2]][link.y[2]] = link.c;
+	map[link.x[3]][link.y[3]] = link.c;
+*/
 	int hash;
 
 	hash = 0;
-	map[x][y] = link.c;	
-	map[link.x[hash + 1]][link.y[hash + 1]] = link.c;
-	map[link.x[hash + 2]][link.y[hash + 2]] = link.c;
-	map[link.x[hash + 3]][link.y[hash + 3]] = link.c;
+	while (map[i])
+	{
+		while (hash <= 3)
+		{
+			i = link.x[hash];
+			j = link.y[hash];
+			map[i][j] = link.c;
+			printf("a");
+			i++;
+			j++;
+		}
+		hash++;
+	}
 	ft_print_map(map);
 	return (map);
 }

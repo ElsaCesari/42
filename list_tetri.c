@@ -46,8 +46,8 @@ void	only_displaying(t_tetri *list)//to be erased
 		printf(" (lettre : %c) \n", to_display->c);
 		while (i < 4)
 		{
-			printf("# n*%d est a x : %d et a y : %d \n", i,
-					to_display->x[i], to_display->y[i]);
+			printf("# n*%d est a x[%d] : %d et a y[%d] : %d \n", i,
+					i, to_display->x[i], i, to_display->y[i]);
 			i++;
 		}
 		i = 0;
