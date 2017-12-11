@@ -12,101 +12,56 @@
 
 #include "fillit.h"
 
-int	try_placing(char **map, t_tetri *link)
+int	place_is_free(char **map, t_tetri *link, int j, int i)
 {
-	int i;
-	int j;
-	int lenght_map;
-
-	i = 0;
-	j = 0;
-	lenght_map = ft_strlen(map[0]);
-	while (map[j])
-	{
-		while (map[j][i])
-		{
-			if (map[j][i] == '.' && map[j + link->y[1]][i + link->x[1]] == '.'
-		 		&& map[j + link->y[2]][i + link->x[2]] == '.'
-		 		&& map[j + link->y[3]][i +link->x[3]] == '.')
-			{
-				placing(i, j, map, *link);
-				return (1);
-			}
-			i++;
-		}
-		i = 0;
-		j++;
-		//link = link->next;
-	}
-	ft_print_map(map);
+	if (map[j][i] == '.' && map[j + link->y[1]][i + link->x[1]] == '.'
+		&& map[j + link->y[2]][i + link->x[2]] == '.'
+		&& map[j + link->y[3]][i + link->x[3]] == '.')
+		return (1);
 	return (0);
 }
 
-char	**placing(int i, int j, char **map, t_tetri link)
+int	placing(char **map, t_tetri *link)
 {
-	t_tetri	*to_display;
-	int		k;
-	int		size_list;
-	int		z;
-	
-	k = 0;
-	z = 0;
-	size_list = ft_lstcount(&link);
-	to_display = &link;
-	while (to_display)
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
 	{
-		while (k < 4 && z < size_list)
+		j = 0;
+		while (map[i][j])
 		{
-			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
-			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
-			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
-			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
-			k++;
+			if (place_is_free(map, link, i, j) == 1)
+			{
+				ft_put(map, link, i, j);
+				ft_print_map(map);
+				if (link->next == NULL)
+					return (1);
+				if (placing(map, link->next) == 1)
+					return (1);
+				else
+					ft_put(map, link, i, j);
+			}
+			j++;
 		}
-		k = 0;
-		z++;
-		to_display = to_display->next;
-		try_placing(map, to_display);
+		i++;
 	}
-	
-	return (map);
+	return (0);
 }
 
-/* replaces tetri letters with dots */
-
-//char    **delete(char **map, t_tetri link)
-//{
-//    int i;
-//    int j;
-//    
-//    i = 0;
-//    j = 0;
-//    while (map[i] != NULL)
-//    {
-//        while(map[i][j] != '\0')
-//        {
-//            if (map[i][j] == link.c) // could use is_alpha here?
-//                map[i][j] = '.';
-//            j++;
-//        }
-//        j = 0;
-//        i++;
-//    }
-//    return (map)
-//}
-
-/*char	**ft_fillit_solve(char **map, t_tetri *link)
+void	ft_put(char **map, t_tetri *link, int i, int j)
 {
-	t_tetri	tmp;
+	int	k;
 
-	tmp = link
-	if (tmp == NULL)
-		return (map);
-	while (link)
+	k = 0;
+	while (k < 4)
 	{
-			
-
+		if (map[i + link->y[k]][j + link->x[k]] == '.')
+			map[i + link->y[k]][j + link->x[k]] = link->c;
+		else
+			map[i + link->y[k]][j + link->x[k]] = '.';	
+		k++;
 	}
+}
 
-
-}*/

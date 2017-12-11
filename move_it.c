@@ -22,9 +22,7 @@ static void	move_up(t_tetri *link)
 	while (i < 4)
 	{
 		if (min_y > link->y[i])
-		{
 			min_y = link->y[i];
-		}
 		i++;
 	}
 	i = 0;
@@ -45,9 +43,7 @@ static void	move_left(t_tetri *link)
 	while (i < 4)
 	{
 		if (min_x > link->x[i])
-		{
 			min_x = link->x[i];
-		}
 		i++;
 	}
 	i = 0;

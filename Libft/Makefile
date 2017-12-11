@@ -82,6 +82,8 @@ SOURCES =	ft_memset.c\
 		
 OBJECTS = $(SOURCES:.c=.o)
 
+.PHONY : all clean fclean re
+
 all: $(NAME)
 
 %.o : %.c
@@ -99,4 +101,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re
+

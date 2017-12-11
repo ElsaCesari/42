@@ -43,7 +43,7 @@ char	**create_map(int n)
 		map[y] = create_line(n);
 		y++;
 	}
-	map[y] = NULL;
+	map[y] = "\0";
 	return (map);
 }
 
@@ -59,7 +59,10 @@ int		smallest_square(t_tetri *list)
 	return (n);
 }
 
-//void	delete_map()
+void	delete_map(char **map)
+{
+	free(map);
+}
 
 void	ft_print_map(char **map)
 {

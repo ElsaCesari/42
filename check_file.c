@@ -17,15 +17,21 @@ int	read_file(int fd)
 	int		ret;
 	char	buf[BUF_SIZE];
 	t_tetri	*list;
+	char	**map;
+	int		map_size;
 
+	list = NULL;
 	if (fd == -1)
 		ft_error();
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';
 	if (check_char(buf) == 0 || check_shape(buf) == 0)
 		ft_error();
-//	list = ft_test(buf);
-	list = snippy_rest(buf);
+	split_buf(&list, buf);
+	map_size =smallest_square(list);
+	map = create_map(map_size);
+	placing(map, list);
+//	ft_print_map(map);
 	return (0);
 }
 
@@ -85,16 +91,3 @@ int	check_shape(char *str)
 	}
 	return (1);
 }
-<<<<<<< HEAD
-=======
-
-int smallest_square(int tetri)
-{
-	int n;
-
-	n = 2;
-	while (n * n < tetri * 4)
-		n++;
-	return (n);
-}
->>>>>>> 6370def22767d26c70f9200a61bfe8940ff1f00a

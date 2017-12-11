@@ -22,6 +22,7 @@ SOURCES =	main_fillit.c\
 			list_tetri.c\
 			move_it.c\
 			map.c\
+			place.c\
 			error.c
 		
 OBJECTS = $(SOURCES:.c=.o)
@@ -37,13 +38,15 @@ all: $(NAME)
 $(LIB):
 	@make re -C Libft/	
 
-$(NAME): $(LIB)
+$(NAME): $(LIB) $(OBJECTS)
 	@$(CC) $(CFLAGS) $(SOURCES) -L Libft -lft -I $(HEADER) -o $(NAME)
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
+	@make clean -C Libft/
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@make fclean -C Libft/
 
 re: fclean all

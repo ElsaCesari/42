@@ -25,103 +25,74 @@ t_tetri	*ft_lnew(void)
 	return (list);
 }
 
-/*//cherche a ajouter un maillon a la fin de la liste
-void	ft_lst_push_back(t_list **begin_list, t_list *list)
- +{
- +	t_list *tmp;
- +
- +	if (!(*begin_list))
- +		*begin_list = list;	
- +	else
- +	{
- +		tmp = *begin_list;
- +		while (tmp->next != NULL)
- +			tmp = tmp->next;
- +		tmp->next = list;
- +	}
- +}*/
-
-//autre option pour ajouter un maillon a la fin de la chaine
-t_tetri *ft_lst_add(t_tetri *start_list)
+//ajouter un maillon a la fin de la chaine
+t_tetri *ft_lst_add(t_tetri **start_list)
 {
-	while (start_list->next)
-		start_list = start_list->next;
-	start_list->next = ft_lnew();
-	return (start_list);
+	t_tetri	*tmp;
+
+	if (*start_list == NULL)
+	{
+		*start_list = ft_lnew();
+		return (*start_list);		
+	}
+	else
+	{	
+		tmp = *start_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = ft_lnew();
+		return (tmp->next);	
+	}
+}
+
+//compter le nombre de maillons
+int		ft_lstcount(t_tetri *list)
+{
+	int		i;
+
+	i = 0;
+	while (list)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
 }
 
 //cherche a afficher la liste
 void	only_displaying(t_tetri *list)//to be erased
 {
-	t_tetri	*to_display;
 	int		i;
 	int		j;
+	int 	k;
+	t_tetri	*to_display;
 
 	i = 0;
 	j = 1;
 	to_display = list;
 	while (to_display)
 	{
-		printf("	Tetriminos n*%d (lettre : %c) \n", j, to_display->c);
-        
-        // Iterate through each tile in the 4x4 grid, using i & j as
-        // indices
+		printf("	Tetriminos lettre : %c\n", to_display->c);
         i = 0;
+		k = 0;
 		while (i < 4)
 		{
-			//printf("# n*%d est a x[%d] : %d et a y[%d] : %d \n", i, i, to_display->x[i], i, to_display->y[i]);
             j = 0;
             while (j < 4)
             {
-                // `k` iterates through blocks in a tetrimino.
-                // We check the grid (using x & y) to see if there's a block at that coordinate
-                int k;
-                int has_block;
-                k = 0;
-                has_block = 0;
-                
-                while (k < 4)
-                {
-                    if (to_display->x[k] == j && to_display->y[k] == i)
-                    {
-                        has_block = 1;
-                        break;
-                    }
-                    k++;
-                }
-                
-                if (has_block == 1)
-                {
-                    printf("%c", to_display->c);
-                }
-                else
-                {
-                    printf(".");
-                }
-                
+               	if (to_display->x[k] == j && to_display->y[k] == i)
+				{
+					printf("%c", to_display->c);
+					k++;
+				}
+				else
+					printf(".");
                 j++;
             }
 			i++;
             printf("\n");
 		}
-		            printf("\n");
-		i = 0;
-		j++;
+        printf("\n");
 		to_display = to_display->next;
 	}
-}
-
-int		ft_lstcount(t_tetri *list)
-{
-	int		i;
-	t_tetri	*temp;
-
-	i = 0;
-	temp = list;
-	while (temp)
-	{
-		i++;
-		temp = temp->next;
-	}
-	return (i);
 }
