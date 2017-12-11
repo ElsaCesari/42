@@ -62,14 +62,21 @@ void	only_displaying(t_tetri *list)//to be erased
 	to_display = list;
 	while (to_display)
 	{
+<<<<<<< HEAD
 		printf("	Tetriminos n*%d (lettre : %c) \n", j, to_display->c);
+=======
+		printf("\n	Tetriminos n*%d (lettre : %c) \n", j, to_display->c);
+>>>>>>> 6370def22767d26c70f9200a61bfe8940ff1f00a
         
         // Iterate through each tile in the 4x4 grid, using i & j as
         // indices
         i = 0;
 		while (i < 4)
 		{
+<<<<<<< HEAD
 			//printf("# n*%d est a x[%d] : %d et a y[%d] : %d \n", i, i, to_display->x[i], i, to_display->y[i]);
+=======
+>>>>>>> 6370def22767d26c70f9200a61bfe8940ff1f00a
             j = 0;
             while (j < 4)
             {
