@@ -58,7 +58,7 @@ static void	move_left(t_tetri *link)
 	}
 }
 
-t_tetri	*move_it(t_tetri *link)
+t_tetri		*move_it(t_tetri *link)
 {
 	move_up(link);
 	move_left(link);

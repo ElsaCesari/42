@@ -47,6 +47,18 @@ char	**create_map(int n)
 	return (map);
 }
 
+int		smallest_square(t_tetri *list)
+{
+	int n;
+	int	nbr_tetri;
+
+	n = 2;
+	nbr_tetri = ft_lstcount(list);
+	while (n * n < nbr_tetri * 4)
+		n++;
+	return (n);
+}
+
 //void	delete_map()
 
 void	ft_print_map(char **map)

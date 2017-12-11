@@ -18,12 +18,11 @@ NAME = fillit
 
 SOURCES =	main_fillit.c\
 			check_file.c\
-			solve_fillit.c\
-			snippy.c\
+			cut.c\
 			list_tetri.c\
 			move_it.c\
 			map.c\
-			place.c
+			error.c
 		
 OBJECTS = $(SOURCES:.c=.o)
 

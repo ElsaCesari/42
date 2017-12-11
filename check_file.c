@@ -11,99 +11,57 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#define BUF_SIZE	555 //546 = 21 characters * 26 tetriminos max
 
 int	read_file(int fd)
 {
 	int		ret;
 	char	buf[BUF_SIZE];
-	int		dot;
-	int		hash;
-	int		line;
+	t_tetri	*list;
 
-	dot = 0;
-	hash = 0;
-	line = 0;
 	if (fd == -1)
-	{
-		ft_putstr("error\n");
-		exit(-1);
-	}
+		ft_error();
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';
-	if (check_char(buf, dot, hash, line) == 0 || check_shape(buf, line) == 0)
-		return (-1);
-	//ft_print_map(create_map(smallest_square(check_char(buf, dot, hash, line))));
-	snippy_rest(buf);
-	try_placing(create_map(smallest_square(check_char(buf, dot, hash, line))),snippy_rest(buf));
+	if (check_char(buf) == 0 || check_shape(buf) == 0)
+		ft_error();
+//	list = ft_test(buf);
+	list = snippy_rest(buf);
 	return (0);
 }
 
 int	check_char(char *str)
 {
 	int x;
-	int	tetri;
 	int hash;
 
 	x = 0;
-	tetri = 0;
 	while (str[x])
 	{
+		x = 0;
 		hash = 0;
-		++tetri;
-		while (x + 1 != 21 * tetri && str[x])
+		while (x < 20 && str[x])
 		{
-			if (str[x] != '\n' && x % 5 != 4)
+			if (str[x] == '\n' && x % 5 != 4)
 				return (0);
-			else if (str[x] == '#') 
+			else if (str[x] == '#')
 				hash++;
-			else if (str[x] != '.')
-				return (0);		
-			x++;
-		}
-		tetri++;
-		str = str + 21;
-		if (!(dot == 12 && hash == 4))
-			return (0);
-	}
-	return (tetri);
-}
-
-int	check_char(char *str, int dot, int hash, int line)
-{
-	int x;
-	int	tetri;
-
-	x = 0;
-	tetri = 0;
-	while (str[x])
-	{
-		dot = 0;
-		hash = 0;
-		line = 0;
-		while (line < 5 && str[x])
-		{
-			if (str[x] != '.' && str[x] != '#' && str[x] != '\n')
+			else if ((str[x] != '.' && x % 5 != 4)
+					|| (x % 5 == 4 && str[x] != '\n'))
 				return (0);
-			dot = (str[x] == '.') ? ++dot : dot;
-			hash = (str[x] == '#') ? ++hash : hash;
-			line = (str[x] == '\n') ? ++line : line;
-			if (str[x] == '\n' && line != 5)
-				if ((4 * line) != (dot + hash))
-					return (0);
 			x++;
 		}
-		tetri++;
-		if (!(dot == 12 && hash == 4))
+		if ((str[x] && str[x] != '\n') || hash != 4)
 			return (0);
+		str = str + 21;
 	}
-	return (tetri);
+	return (1);
 }
 
-int	check_shape(char *str, int line)
+int	check_shape(char *str)
 {
-	int x;
+	int	x;
 	int cont;
+	int line;
 
 	x = 0;
 	while (str[x])
@@ -115,7 +73,7 @@ int	check_shape(char *str, int line)
 			if (str[x] == '#')
 			{
 				cont = (str[x + 1] == '#') ? ++cont : cont;
-				cont = (str[x - 1] == '#') ? ++cont : cont;
+				cont = (str[x - 1] == '#' && x != 0) ? ++cont : cont;
 				cont = (str[x + 5] == '#' && line < 3) ? ++cont : cont;
 				cont = (str[x - 5] == '#' && line != 0) ? ++cont : cont;
 			}
@@ -126,14 +84,4 @@ int	check_shape(char *str, int line)
 			return (0);
 	}
 	return (1);
-}
-
-int smallest_square(int tetri)
-{
-	int n;
-
-	n = 2;
-	while (n * n < tetri * 4)
-		n++;
-	return (n);
 }
