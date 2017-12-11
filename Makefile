@@ -35,18 +35,17 @@ LIB = libft.a
 
 all: $(NAME)
 
-$(LIB):
+$(NAME):
 	@make re -C Libft/	
-
-$(NAME): $(LIB) $(OBJECTS)
-	@$(CC) $(CFLAGS) $(SOURCES) -L Libft -lft -I $(HEADER) -o $(NAME)
+	@$(CC) $(CFLAGS) -c $(SOURCES)
+	@$(CC) $(CFLAGS) -o $(NAME) Libft/$(LIB) $(OBJECTS)
 
 clean:
-	@rm -f $(OBJECTS)
 	@make clean -C Libft/
+	@/bin/rm -f $(OBJECTS)
 
 fclean: clean
-	@rm -f $(NAME)
 	@make fclean -C Libft/
+	@/bin/rm -f $(NAME)
 
 re: fclean all

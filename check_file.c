@@ -25,13 +25,14 @@ int	read_file(int fd)
 		ft_error();
 	ret = read(fd, buf, BUF_SIZE + 1);
 	buf[ret] = '\0';
+	if (ret == 0)
+		ft_error();
 	if (check_char(buf) == 0 || check_shape(buf) == 0)
 		ft_error();
 	split_buf(&list, buf);
-	map_size =smallest_square(list);
+	map_size = smallest_square(list);
 	map = create_map(map_size);
-	placing(map, list);
-//	ft_print_map(map);
+	map_size_up(map, list);
 	return (0);
 }
 
@@ -45,9 +46,9 @@ int	check_char(char *str)
 	{
 		x = 0;
 		hash = 0;
-		while (x < 20 && str[x])
+		while (x < 20)
 		{
-			if (str[x] == '\n' && x % 5 != 4)
+			if ((!str[x]) || (str[x] == '\n' && x % 5 != 4))
 				return (0);
 			else if (str[x] == '#')
 				hash++;
@@ -58,7 +59,7 @@ int	check_char(char *str)
 		}
 		if ((str[x] && str[x] != '\n') || hash != 4)
 			return (0);
-		str = str + 21;
+		str = str[21] != '\0' ? str + 21 : str - 8;
 	}
 	return (1);
 }

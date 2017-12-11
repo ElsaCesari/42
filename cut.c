@@ -38,19 +38,5 @@ void	split_buf(t_tetri **list, char *str)
 		str = str + i;
 		i = 0;
 	}
-	ft_display_the_result(*list);
-}
-
-void	ft_display_the_result(t_tetri *list)
-{
-	t_tetri	*tmp;
-
-	tmp = list;
-	only_displaying(list);
-	while (list)
-	{
-		move_it(list);
-		list = list->next;
-	}
-	only_displaying(tmp);
+	move_it(*list);
 }
