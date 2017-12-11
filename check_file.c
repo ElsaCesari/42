@@ -39,35 +39,35 @@ int	read_file(int fd)
 	return (0);
 }
 
-int	check_char(char *str)
-{
-	int x;
-	int	tetri;
-	int hash;
-
-	x = 0;
-	tetri = 0;
-	while (str[x])
-	{
-		hash = 0;
-		++tetri;
-		while (x + 1 != 21 * tetri && str[x])
-		{
-			if (str[x] != '\n' && x % 5 != 4)
-				return (0);
-			else if (str[x] == '#') 
-				hash++;
-			else if (str[x] != '.')
-				return (0);		
-			x++;
-		}
-		tetri++;
-		str = str + 21;
-		if (!(dot == 12 && hash == 4))
-			return (0);
-	}
-	return (tetri);
-}
+//int    check_char(char *str)
+//{
+//    int x;
+//    int    tetri;
+//    int hash;
+//
+//    x = 0;
+//    tetri = 0;
+//    while (str[x])
+//    {
+//        hash = 0;
+//        ++tetri;
+//        while (x + 1 != 21 * tetri && str[x])
+//        {
+//            if (str[x] != '\n' && x % 5 != 4)
+//                return (0);
+//            else if (str[x] == '#')
+//                hash++;
+//            else if (str[x] != '.')
+//                return (0);
+//            x++;
+//        }
+//        tetri++;
+//        str = str + 21;
+//        if (!(dot == 12 && hash == 4))
+//            return (0);
+//    }
+//    return (tetri);
+//}
 
 int	check_char(char *str, int dot, int hash, int line)
 {

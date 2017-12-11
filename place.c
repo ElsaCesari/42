@@ -55,18 +55,6 @@ char	**placing(int i, int j, char **map, t_tetri link)
 	to_display = &link;
 	while (to_display)
 	{
-<<<<<<< Updated upstream
-		while (hash < 3)
-		{
-			i = link.x[hash];
-			j = link.y[hash];
-			map[i][j] = link.c;
-			printf("a");
-			i++;
-			j++;
-			hash++;
-		}
-=======
 		while (k < 4 && z < size_list)
 		{
 			map[j + to_display->y[k]][i + to_display->x[k]] = to_display->c;
@@ -79,37 +67,34 @@ char	**placing(int i, int j, char **map, t_tetri link)
 		z++;
 		to_display = to_display->next;
 		try_placing(map, to_display);
->>>>>>> Stashed changes
 	}
 	
 	return (map);
 }
 
-<<<<<<< Updated upstream
-
 /* replaces tetri letters with dots */
 
-char	**delete(char **map, t_tetri link)
-{
-	int i;
-	int j;
-	
-	i = 0;
-	j = 0;
-	while (map[i] != NULL)
-	{
-		while(map[i][j] != '\0')
-		{
-			if (map[i][j] == link.c) // could use is_alpha here?
-				tab[i][j] = '.';
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (map)
-}
-=======
+//char    **delete(char **map, t_tetri link)
+//{
+//    int i;
+//    int j;
+//    
+//    i = 0;
+//    j = 0;
+//    while (map[i] != NULL)
+//    {
+//        while(map[i][j] != '\0')
+//        {
+//            if (map[i][j] == link.c) // could use is_alpha here?
+//                map[i][j] = '.';
+//            j++;
+//        }
+//        j = 0;
+//        i++;
+//    }
+//    return (map)
+//}
+
 /*char	**ft_fillit_solve(char **map, t_tetri *link)
 {
 	t_tetri	tmp;
@@ -125,4 +110,3 @@ char	**delete(char **map, t_tetri link)
 
 
 }*/
->>>>>>> Stashed changes
